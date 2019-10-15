@@ -47,7 +47,7 @@
 
             QM_nextQuestion : function(){
                 let QM_listQuestion = document.getElementById("question_list");
-                QM_listQuestion.style.setProperty("left", "-" + (QM_listQuestion.style.getPropertyValue("left").substr(0, QM_listQuestion.style.getPropertyValue("left").length - 2) + 100) + "vh");
+                QM_listQuestion.style.setProperty("left", "-" + (QM_listQuestion.style.getPropertyValue("left").substr(0, QM_listQuestion.style.getPropertyValue("left").length - 2) + 100) + "vw");
             }
 
         }
@@ -74,6 +74,7 @@
 
     .question_list{
         position: absolute;
+        transition: linear .5s;
         overflow-x: scroll;
         text-overflow: ellipsis;
         white-space: nowrap;
