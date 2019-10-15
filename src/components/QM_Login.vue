@@ -12,7 +12,7 @@
       <label for="company_login" class="labelForm">Entreprise :
         <input type="text" id="company_login" v-model="QM_company">
       </label>
-      <button id="button_login" v-on:click='QM_login'>Se connecter</button>
+      <button id="button_login" v-on:click='QM_login'>Commencer le test</button>
     </div>
   </div>
 </template>
@@ -45,12 +45,15 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
+  body{
+    background-color: ghostwhite;
+  }
+
   .login_div{
     text-align: center;
     margin: 0 auto;
     width: 95vw;
     height: 100vh;
-    background-color: ghostwhite;
   }
 
   .img_questionnaire{

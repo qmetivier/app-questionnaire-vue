@@ -8,7 +8,8 @@
             </label>
         </div>
         <br>
-        <button v-on:click="$emit('next-question')">Répondre</button>
+        <button v-if="!QM_isLast" v-on:click="$emit('next-question')">Question suivante</button>
+        <button v-else v-on:click="$emit('valid-question')">Valider ces réponses</button>
     </span>
 </template>
 
@@ -17,7 +18,8 @@
         name: "QM_question",
         props : {
             QM_question: null,
-            QM_response: null
+            QM_response: null,
+            QM_isLast: false
         },
         methods : {
         }
