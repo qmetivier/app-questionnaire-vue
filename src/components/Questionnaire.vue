@@ -1,20 +1,20 @@
 <template>
     <div class="questionnaire_div">
         <div class="progress_bar">
-            <span v-for=" QM_question in QM_questions">
+            <span v-for=" QM_question in QM_questions" :key="QM_question.id">
                 {{(QM_question.id === QM_selectedItemProgressBar) ? "0" : "o"}}
             </span>
         </div>
         <div class="container_question_list">
-            <div class="question_list" id="question_list" style="left: 0;">
+            <form @submit="QM_checkForm" method="get" class="question_list" id="question_list" style="left: 0;">
                 <QM_question
                              v-for="QM_question in QM_questions"
-                             v-bind:QM_question="QM_question"
                              :key="QM_question.id"
+                             v-bind:QM_question="QM_question"
                              v-bind:q-m_is-last="(QM_question.id === (QM_questions.length-1))"
                              v-on:next-question="QM_nextQuestion"
                 ></QM_question>
-            </div>
+            </form>
         </div>
         <button class="previous_button" v-on:click="QM_previousQuestion">&larr;</button>
     </div>
@@ -24,6 +24,8 @@
 
     import QM_question from "@/components/QM_question";
 
+    import QM_questions from '../assets/form1'
+
     export default {
         name: 'QM_Login',
         components: {QM_question},
@@ -32,36 +34,9 @@
         },
         data() {
             return{
-                QM_questions: [
-                    {
-                        id: 0,
-                        question : "question_1",
-                        awnsers :[
-                            { text: "awnser_1" },
-                            { text: "awnser_2" },
-                            { text: "awnser_3" },
-                        ]
-                    },
-                    {
-                        id: 1,
-                        question : "question_2",
-                        awnsers :[
-                            { text: "awnser_1" },
-                            { text: "awnser_2" },
-                            { text: "awnser_3" },
-                        ]
-                    },
-                    {
-                        id: 2,
-                        question : "question_3",
-                        awnsers :[
-                            { text: "awnser_1" },
-                            { text: "awnser_2" },
-                            { text: "awnser_3" },
-                        ]
-                    }
-                ],
-                QM_selectedItemProgressBar: 0
+                QM_firstName: "",
+                QM_questions: QM_questions,
+                QM_selectedItemProgressBar: 0,
             }
         },
         methods : {
@@ -86,8 +61,32 @@
 
             QM_selectedProgressBar: function(action){
                 this.QM_selectedItemProgressBar += action;
+            },
+
+            /**
+             * @return {boolean}
+             */
+            QM_checkForm : function (e){
+                e.preventDefault();
+                let inputs = e.target.getElementsByTagName('input');
+                let responses = [];
+                for(let i in inputs){
+                    if ((inputs[i]).checked === true){
+                        responses.push(inputs[i]);
+                    }
+                }
+                let query = [];
+                for (let i in responses){
+                    query.push(responses[i].value);
+                }
+                this.$router.push({name: 'result',query : query });
             }
 
+        },
+        mounted() {
+            if (localStorage.firstName) {
+                this.QM_firstName = localStorage.firstName;
+            }
         }
     }
 </script>

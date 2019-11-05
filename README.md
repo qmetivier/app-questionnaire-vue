@@ -27,3 +27,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### Scéance du 15 Octobre
 #### Objectif :
 Affichage des questions de facon dynamique et récupération des réponses aux questions.
+
+### Scéance du 5 Novembre
+#### Objectif :
+Sauvegarder les réponses aux questions

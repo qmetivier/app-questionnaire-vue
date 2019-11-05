@@ -4,13 +4,13 @@
     <div id="Form_Login">
       <div id="ErrorMessage" v-text="QM_errorMessage"></div>
       <label for="firstName_login" class="labelForm">Prénom :
-        <input type="text" id="firstName_login" v-model="QM_firstName">
+        <input type="text" id="firstName_login" v-model="QM_User.QM_firstName">
       </label>
       <label for="lasName_login" class="labelForm">Nom :
-        <input type="text" id="lasName_login" v-model="QM_lastName">
+        <input type="text" id="lasName_login" v-model="QM_User.QM_lastName">
       </label>
       <label for="company_login" class="labelForm">Entreprise :
-        <input type="text" id="company_login" v-model="QM_company">
+        <input type="text" id="company_login" v-model="QM_User.QM_company">
       </label>
       <button id="button_login" v-on:click='QM_login'>Commencer le test</button>
     </div>
@@ -23,9 +23,11 @@
     name: 'QM_Login',
     data() {
       return{
-        QM_firstName: "",
-        QM_lastName: "",
-        QM_company: "",
+        QM_User : {
+          QM_firstName: "",
+          QM_lastName: "",
+          QM_company: ""
+        },
         QM_errorMessage: "",
       }
     },
@@ -35,9 +37,13 @@
             this.QM_errorMessage = "Veuillez remplir tout les champs";
           }else{
             this.QM_errorMessage = "";
-            window.location.pathname = "/questionnaire";
+            localStorage.QM_firstName = this.QM_User.QM_firstName;
+            this.$router.push('questionnaire');
           }
         }
+      },
+      mounted() {
+        this.QM_User.QM_firstName = localStorage.QM_firstName;
       }
   }
 </script>
