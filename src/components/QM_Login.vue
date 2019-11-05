@@ -37,13 +37,13 @@
             this.QM_errorMessage = "Veuillez remplir tout les champs";
           }else{
             this.QM_errorMessage = "";
-            localStorage.QM_firstName = this.QM_User.QM_firstName;
+            localStorage.QM_user = JSON.stringify(this.QM_User) ;
             this.$router.push('questionnaire');
           }
         }
       },
       mounted() {
-        this.QM_User.QM_firstName = localStorage.QM_firstName;
+        this.QM_User = JSON.parse(localStorage.QM_user);
       }
   }
 </script>

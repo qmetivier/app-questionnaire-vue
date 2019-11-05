@@ -1,10 +1,10 @@
 <template>
     <span>
         <h4>{{QM_question.question}}</h4>
-        <div v-for="QM_awnser in QM_question.awnsers" :key="QM_question.id + QM_awnser.id">
-            <label :for="'checkbox' + QM_question.id + QM_awnser.id">
-                {{QM_awnser.text}}
-                <input type="radio" v-model="QM_QuestionAwnsers" :value="QM_awnser.id" :name="QM_question.id" :id="'checkbox' + QM_question.id + QM_awnser.id" required>
+        <div v-for="QM_answser in QM_question.answers" :key="QM_question.id + QM_answser.id">
+            <label :for="'checkbox' + QM_question.id + QM_answser.id">
+                {{QM_answser.text}}
+                <input type="radio" v-model="QM_QuestionAnswers" :value="QM_answser.id" :name="QM_question.id" :id="'checkbox' + QM_question.id + QM_answser.id" required>
             </label>
         </div>
         <br>
@@ -22,7 +22,7 @@
         },
         data() {
             return {
-                QM_QuestionAwnsers : []
+                QM_QuestionAnswers : []
             }
         },
         methods : {

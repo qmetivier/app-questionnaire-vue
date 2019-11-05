@@ -77,9 +77,12 @@
                 }
                 let query = [];
                 for (let i in responses){
-                    query.push(responses[i].value);
+                    query.push( (i+1), responses[i].value);
                 }
-                this.$router.push({name: 'result',query : query });
+
+                localStorage.QM_responses = JSON.stringify(query);
+
+                this.$router.push('result');
             }
 
         },
